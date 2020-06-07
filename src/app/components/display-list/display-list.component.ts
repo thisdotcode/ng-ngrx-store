@@ -10,11 +10,12 @@ import { DeleteListItem } from 'src/app/store/actions/my-list.action';
 })
 export class DisplayListComponent implements OnInit {
   listItems: string[] = [];
-  constructor(private store: Store<AppState>) {}
 
+  constructor(private store: Store<AppState>) {}
   ngOnInit() {
     this.store.select('myList').subscribe((listItems) => {
-      this.listItems = listItems.myList;
+      // Assinging updated state from store to the property present in component
+      this.listItems = listItems;
     });
   }
 

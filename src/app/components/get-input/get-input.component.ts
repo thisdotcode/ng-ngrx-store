@@ -6,6 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { AppState } from 'src/app/store/app.state';
+
 import { Store } from '@ngrx/store';
 import { AddListItem } from 'src/app/store/actions/my-list.action';
 
@@ -14,27 +15,17 @@ import { AddListItem } from 'src/app/store/actions/my-list.action';
   templateUrl: './get-input.component.html',
   styleUrls: ['./get-input.component.scss'],
 })
-export class GetInputComponent implements OnInit, AfterViewInit {
+export class GetInputComponent implements AfterViewInit {
   inputValue: string;
   displayError = false;
   @ViewChild('inputEl', { static: false }) inputEl: ElementRef;
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit() {
-    this.store.select('myList').subscribe((myList) => {
-      this.setItemStatus(myList.showError);
-    });
-  }
-
   public addItem(): void {
-    // Setting value to listItems variable present in service
+    // Dispatching action object to store
     this.store.dispatch(new AddListItem(this.inputValue));
     this.resetInput();
-  }
-
-  public setItemStatus(status: boolean): void {
-    this.displayError = status;
   }
 
   public enableAddBtn(): boolean {

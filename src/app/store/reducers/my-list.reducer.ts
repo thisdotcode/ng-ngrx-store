@@ -1,38 +1,25 @@
 import { MyListActionTypes, MyListActions } from '../actions/my-list.action';
-import { MyListModel } from '../model/my-list.model';
 
-const initialState: MyListModel = {
-  myList: [],
-  showError: false,
-};
-
+// Value of initial state to be present in store
+const initialState = [];
+/**
+ *
+ * @param state Current state present in store.
+ * @param action Action object recevied from components.
+ * @returns Next state, that will be updated to the store.
+ */
 export function myListReducer(
-  state: MyListModel = initialState,
+  state: string[] = initialState,
   action: MyListActionTypes
-): MyListModel {
+): string[] {
   switch (action.type) {
     case MyListActions.ADD_LIST_ITEM:
-      const val = action.payload.trim().toLowerCase();
-      if (state.myList.indexOf(val) !== -1) {
-        return {
-          myList: state.myList,
-          showError: true,
-        };
-      } else {
-        return {
-          myList: [...state.myList, val],
-          showError: false,
-        };
-      }
-
+      return [...state, action.payload];
     case MyListActions.DELETE_LIST_ITEM:
-      const newList = state.myList.filter((val, index) => {
+      const newState = state.filter((val, index) => {
         return index !== action.payload;
       });
-      return {
-        myList: newList,
-        showError: false,
-      };
+      return newState;
     default:
       return state;
   }
