@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.state';
-import { DeleteListItem } from 'src/app/store/actions/my-list.action';
+import { AppState } from '../../store/app.state';
+import { DeleteListItem } from '../../store/actions/my-list.action';
 
 @Component({
   selector: 'app-display-list',

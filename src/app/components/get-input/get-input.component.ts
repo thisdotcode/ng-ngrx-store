@@ -5,10 +5,10 @@ import {
   ElementRef,
   OnInit,
 } from '@angular/core';
-import { AppState } from 'src/app/store/app.state';
+import { AppState } from '../../store/app.state';
 
 import { Store } from '@ngrx/store';
-import { AddListItem } from 'src/app/store/actions/my-list.action';
+import { AddListItem } from '../../store/actions/my-list.action';
 
 @Component({
   selector: 'app-get-input',
